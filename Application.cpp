@@ -89,6 +89,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	_cLightingManager = new Lighting();
 	_cMaterialManager = new MaterialManager();
 	_cTextureManager = new TextureManager(_cDirectx->GetDevice());
+	_cObjectManager = new ObjectManager();
 
 	// Setup Camera
 	XMFLOAT3 eye = XMFLOAT3(0.0f, 2.0f, -1.0f);
@@ -156,20 +157,7 @@ void Application::InitObjects()
 
 	raceTrack = new GameObject("Race Track", appearance, transform, particleModel);
 
-	// Sky Box Initialisation
-	Geometry skyBoxGeometry = OBJLoader::Load("Objects/sphere.obj", _pd3dDevice);
-
-	appearance = new Appearance(skyBoxGeometry, _cMaterialManager->skyBoxMat);
-	appearance->SetTextureRV(_cTextureManager->_pSkyTex);
-
-	transform = new Transform();
-	transform->SetPosition(0.0f, 0.0f, 0.0f);
-	transform->SetScale(-10000.0f, -10000.0f, -10000.0f);
-	transform->SetRotation(XMConvertToRadians(0.0f), 0.0f, 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, 0.1f);
-
-	skyBox = new GameObject("Sky Box", appearance, transform, particleModel);
+	_cObjectManager->InitObjects(_pd3dDevice ,_cMaterialManager, _cTextureManager);
 
 	//Ball Init
 	Geometry ballGeometry = OBJLoader::Load("Objects/sphere.obj", _pd3dDevice);
@@ -693,7 +681,7 @@ void Application::Update(float t)
 
 		raceTrack->Update(t);
 
-		skyBox->Update(t);
+		_cObjectManager->skyBox->Update(t);
 		firePit->Update(t);
 		house->Update(t);
 		ball->GetParticleModel()->BaseCollisionCheck(groundPlane->GetTransform()->GetPosition());
@@ -714,23 +702,6 @@ void Application::Draw()
 	ID3D11DeviceContext* _pImmediateContext = _cDirectx->GetDeviceContext();
 	ID3D11Buffer* _pConstantBuffer = _cDirectx->GetCB();
 	_cDirectx->ClearRenderTarget();
-
-	//// Clear buffers
-	//float ClearColor[4] = { 0.5f, 0.5f, 0.5f, 1.0f }; // red,green,blue,alpha
-	//float blendFactor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	//_pImmediateContext->ClearRenderTargetView(_pRenderTargetView, ClearColor);
-	//_pImmediateContext->ClearDepthStencilView(_depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-	//_pImmediateContext->OMSetBlendState(0, 0, 0xffffffff);
-	//// Setup buffers and render scene
-	//_pImmediateContext->IASetInputLayout(_pVertexLayout);
-
-	//_pImmediateContext->VSSetShader(_pVertexShader, nullptr, 0);
-	//_pImmediateContext->PSSetShader(_pPixelShader, nullptr, 0);
-
-	//_pImmediateContext->VSSetConstantBuffers(0, 1, &_pConstantBuffer);
-	//_pImmediateContext->PSSetConstantBuffers(0, 1, &_pConstantBuffer);
-	//_pImmediateContext->PSSetSamplers(0, 1, &_pSamplerLinear);
-
 
 	// Setup View and Projection
 	XMMATRIX view;
@@ -766,7 +737,7 @@ void Application::Draw()
 
 	// --------------- Draw Sky Box ---------------- //
 
-	material = skyBox->GetAppearance()->GetMaterial();
+	material = _cObjectManager->skyBox->GetAppearance()->GetMaterial();
 
 	// Copy material to shader
 	cb.surface.AmbientMtrl = material.ambient;
@@ -774,12 +745,12 @@ void Application::Draw()
 	cb.surface.SpecularMtrl = material.specular;
 
 	// Set world matrix
-	cb.World = XMMatrixTranspose(skyBox->GetTransform()->GetWorldMatrix());
+	cb.World = XMMatrixTranspose(_cObjectManager->skyBox->GetTransform()->GetWorldMatrix());
 
 	// Set texture
-	if (skyBox->GetAppearance()->HasTexture())
+	if (_cObjectManager->skyBox->GetAppearance()->HasTexture())
 	{
-		ID3D11ShaderResourceView* textureRV = skyBox->GetAppearance()->GetTextureRV();
+		ID3D11ShaderResourceView* textureRV = _cObjectManager->skyBox->GetAppearance()->GetTextureRV();
 		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
 		cb.HasTexture = 1.0f;
 	}
@@ -792,7 +763,7 @@ void Application::Draw()
 	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
 
 	// Draw object
-	skyBox->Draw(_pImmediateContext);
+	_cObjectManager->skyBox->Draw(_pImmediateContext);
 
 	// ------------- Draw Ground Plane ------------- //
 

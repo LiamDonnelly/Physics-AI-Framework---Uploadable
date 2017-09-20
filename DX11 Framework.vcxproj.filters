@@ -77,6 +77,7 @@
     <ClInclude Include="D3D.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Appearance.cpp">
@@ -136,6 +137,7 @@
     <ClCompile Include="D3D.cpp">
       <Filter>CPP</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

@@ -19,6 +19,7 @@
 #include "ParticleManager.h"
 
 #include "Lighting.h";
+#include "ObjectManager.h"
 #include "MaterialManager.h";
 #include "TextureManager.h";
 #include "D3D.h";
@@ -34,6 +35,7 @@ private:
 	Lighting* _cLightingManager;
 	MaterialManager* _cMaterialManager;
 	TextureManager* _cTextureManager;
+	ObjectManager* _cObjectManager;
 
 	HINSTANCE               _hInst;
 	HWND                    _hWnd;
@@ -89,7 +91,6 @@ private:
 	GameObject* raceTrack;
 	GameObject* groundPlane;
 	GameObject* mountain;
-	GameObject* skyBox;
 	GameObject* house;
 	GameObject* firePit;
 	GameObject* tree;
