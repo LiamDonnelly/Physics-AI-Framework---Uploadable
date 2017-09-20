@@ -110,7 +110,6 @@ float4 PS(VS_OUTPUT input) : SV_Target
 	{
 		specularAmount = 0.0f;
 	}
-
 	// Compute the ambient, diffuse, and specular terms separately.
 	specular += specularAmount * (surface.SpecularMtrl * light.SpecularLight).rgb;
 	diffuse += diffuseAmount * (surface.DiffuseMtrl * light.DiffuseLight).rgb;
