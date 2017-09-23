@@ -112,113 +112,9 @@ void Application::InitObjects()
 	ParticleModel* particleModel;
 
 	ID3D11Device* _pd3dDevice = _cDirectx->GetDevice();
-	// Ground Plane Initialisation
-	Geometry groundGeometry = OBJLoader::Load("Objects/ground.obj", _pd3dDevice);
-
-	appearance = new Appearance(groundGeometry, _cMaterialManager->shinyMaterial);
-	appearance->SetTextureRV(_cTextureManager->_pGrassTex);
-
-	transform = new Transform();
-	transform->SetPosition(0.0f, -1.0f, 0.0f);
-	transform->SetScale(0.5f, 0.5f, 0.5f);
-	transform->SetRotation(XMConvertToRadians(0.0f), 0.0f, 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, -1.0f);
-
-	groundPlane = new GameObject("Ground Plane", appearance, transform, particleModel);
-
-	// Mountains Initialisation
-	Geometry mountainGeometry = OBJLoader::Load("Objects/mountain.obj", _pd3dDevice);
-
-	appearance = new Appearance(mountainGeometry, _cMaterialManager->shinyMaterial);
-	appearance->SetTextureRV(_cTextureManager->_pMountainTex);
-
-	transform = new Transform();
-	transform->SetPosition(0.0f, 0.0f, 0.0f);
-	transform->SetScale(0.2f, 0.2f, 0.2f);
-	transform->SetRotation(XMConvertToRadians(0.0f), 0.0f, 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, 100.0f);
-
-	mountain = new GameObject("Mountain", appearance, transform, particleModel);
-
-	// Race Track Initialisaton
-	Geometry raceTrackGeometry = OBJLoader::Load("Objects/Runway.obj", _pd3dDevice);
-
-	appearance = new Appearance(raceTrackGeometry, _cMaterialManager->noSpecMaterial);
-	appearance->SetTextureRV(_cTextureManager->_pRaceTrackTex);
-
-	transform = new Transform();
-	transform->SetPosition(0.0f, 0.5f, 0.0f);
-	transform->SetScale(1.0f, 1.0f, 1.0f);
-	transform->SetRotation(XMConvertToRadians(0.0f), 0.0f, 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, 1.0f);
-
-	raceTrack = new GameObject("Race Track", appearance, transform, particleModel);
+	
 
 	_cObjectManager->InitObjects(_pd3dDevice ,_cMaterialManager, _cTextureManager);
-
-	//Ball Init
-	Geometry ballGeometry = OBJLoader::Load("Objects/sphere.obj", _pd3dDevice);
-
-	appearance = new Appearance(ballGeometry, _cMaterialManager->shinyMaterial);
-	//appearance->SetTextureRV(_cTextureManager->_pSkyTex);
-
-	transform = new Transform();
-	transform->SetPosition(-50.0f, 6.0f, 0.0f);
-	transform->SetScale(3.0f, 3.0f, 3.0f);
-	transform->SetRotation(XMConvertToRadians(0.0f), 0.0f, 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, 1.0f);
-	particleModel->SetCollisionRadius(1.0f);
-	ball = new GameObject("Ball", appearance, transform, particleModel);
-	Objects.push_back(ball);
-	//House Init
-	Geometry houseG = OBJLoader::Load("Objects/House/house.obj", _pd3dDevice);
-
-	appearance = new Appearance(houseG, _cMaterialManager->noSpecMaterial);
-	//appearance->SetTextureRV(_cTextureManager->_pHouseTex);
-
-	transform = new Transform();
-	transform->SetPosition(-300.0f, 0.0f, 50.0f);
-	transform->SetScale(0.2f, 0.2f, 0.2f);
-	transform->SetRotation(XMConvertToRadians(0.0f), XMConvertToRadians(-30.0f), 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, 10.0f);
-	particleModel->SetCollisionRadius(50.0f);
-	house = new GameObject("House", appearance, transform, particleModel);
-	Objects.push_back(house);
-	//FirePit Init
-	Geometry firepitGeo = OBJLoader::Load("Objects/Tree/firePit.obj", _pd3dDevice);
-
-	appearance = new Appearance(firepitGeo, _cMaterialManager->noSpecMaterial);
-	appearance->SetTextureRV(_cTextureManager->_pTreeTex);
-
-	transform = new Transform();
-	transform->SetPosition(-260.0f, 0.0f, 10.0f);
-	transform->SetScale(0.3f, 0.3f, 0.3f);
-	transform->SetRotation(XMConvertToRadians(0.0f), 0.0f, 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, 1.0f);
-	particleModel->SetCollisionRadius(1.0f);
-	firePit = new GameObject("Firepit", appearance, transform, particleModel);
-	Objects.push_back(firePit);
-	//tree Init
-	Geometry treeGeo = OBJLoader::Load("Objects/Tree/lowTree.obj", _pd3dDevice);
-
-	appearance = new Appearance(treeGeo, _cMaterialManager->noSpecMaterial);
-	appearance->SetTextureRV(_cTextureManager->_pTreeTex);
-
-	transform = new Transform();
-	transform->SetPosition(-160.0f, 0.0f, 20.0f);
-	transform->SetScale(0.3f, 0.3f, 0.3f);
-	transform->SetRotation(XMConvertToRadians(0.0f), 0.0f, 0.0f);
-
-	particleModel = new PlaneParticleModel(transform, 2.0f);
-	particleModel->SetCollisionRadius(1.0f);
-	tree = new GameObject("tree", appearance, transform, particleModel);
-	Objects.push_back(tree);
 
 	// Init Plane collection Objects
 	InitPlaneObjects();
@@ -618,15 +514,15 @@ void Application::PlaneUpdate(float t)
 {
 	CameraInput();
 
-	if (myPlane->GetPlaneBody()->GetParticleModel()->BaseCollisionCheck(groundPlane->GetTransform()->GetPosition()))
+	/*if (myPlane->GetPlaneBody()->GetParticleModel()->BaseCollisionCheck(groundPlane->GetTransform()->GetPosition()))
 	{
 		myPlane->setFlying(false);
 	}
+		
 
 	if (comPlane->GetPlaneBody()->GetParticleModel()->BaseCollisionCheck(groundPlane->GetTransform()->GetPosition()))
-	{
-		comPlane->setFlying(false);
-	}
+	{comPlane->setFlying(false);
+	}*/
 
 	// Plane Body Updates
 	myPlane->Update(t);
@@ -675,19 +571,9 @@ void Application::Update(float t)
 
 		PlaneUpdate(t);
 
-		groundPlane->Update(t);
-
-		mountain->Update(t);
-
-		raceTrack->Update(t);
-
 		_cObjectManager->skyBox->Update(t);
-		firePit->Update(t);
-		house->Update(t);
-		ball->GetParticleModel()->BaseCollisionCheck(groundPlane->GetTransform()->GetPosition());
-		ball->GetParticleModel()->Update(t);
-		tree->Update(t);
-		ball->Update(t);
+		
+		_cObjectManager->Update(t);
 
 		particleManager->SetCameraPos(cameraCurrent->GetPosition());
 		particleManager->Update(t);
@@ -738,245 +624,7 @@ void Application::Draw()
 	Material material;
 
 	_cObjectManager->Draw(_pImmediateContext, _pConstantBuffer, cb);
-	// --------------- Draw Sky Box ---------------- //
-
-	//material = _cObjectManager->skyBox->GetAppearance()->GetMaterial();
-
-	//// Copy material to shader
-	//cb.surface.AmbientMtrl = material.ambient;
-	//cb.surface.DiffuseMtrl = material.diffuse;
-	//cb.surface.SpecularMtrl = material.specular;
-
-	//// Set world matrix
-	//cb.World = XMMatrixTranspose(_cObjectManager->skyBox->GetTransform()->GetWorldMatrix());
-
-	//// Set texture
-	//if (_cObjectManager->skyBox->GetAppearance()->HasTexture())
-	//{
-	//	ID3D11ShaderResourceView* textureRV = _cObjectManager->skyBox->GetAppearance()->GetTextureRV();
-	//	_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-	//	cb.HasTexture = 1.0f;
-	//}
-	//else
-	//{
-	//	cb.HasTexture = 0.0f;
-	//}
-
-	//// Update constant buffer
-	//_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	//// Draw object
-	//_cObjectManager->skyBox->Draw(_pImmediateContext);
-
-	// ------------- Draw Ground Plane ------------- //
-
-	material = groundPlane->GetAppearance()->GetMaterial();
-
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
-
-	// Set world matrix
-	cb.World = XMMatrixTranspose(groundPlane->GetTransform()->GetWorldMatrix());
-
-	// Set texture
-	if (groundPlane->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = groundPlane->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
-
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	// Draw object
-	groundPlane->Draw(_pImmediateContext);
-
-	// --------------- Draw ball --------------- //
-	material = ball->GetAppearance()->GetMaterial();
-
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
-
-	// Set world matrix
-	cb.World = XMMatrixTranspose(ball->GetTransform()->GetWorldMatrix());
-
-	// Set texture
-	if (ball->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = ball->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
-
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	// Draw object
-	ball->Draw(_pImmediateContext);
-
-	// --------------- Draw House --------------- //
-	material = house->GetAppearance()->GetMaterial();
-
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
-
-	// Set world matrix
-	cb.World = XMMatrixTranspose(house->GetTransform()->GetWorldMatrix());
-
-	// Set texture
-	if (house->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = house->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
-
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	// Draw object
-	house->Draw(_pImmediateContext);
-
-	// --------------- Draw FirePit --------------- //
-	material = firePit->GetAppearance()->GetMaterial();
-
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
-
-	// Set world matrix
-	cb.World = XMMatrixTranspose(firePit->GetTransform()->GetWorldMatrix());
-
-	// Set texture
-	if (firePit->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = firePit->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
-
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	// Draw object
-	firePit->Draw(_pImmediateContext);
-
-	// --------------- Draw tree --------------- //
-	material = tree->GetAppearance()->GetMaterial();
-
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
-
-	// Set world matrix
-	cb.World = XMMatrixTranspose(tree->GetTransform()->GetWorldMatrix());
-
-	// Set texture
-	if (tree->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = tree->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
-
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	// Draw object
-	tree->Draw(_pImmediateContext);
-
-	// --------------- Draw Mountain --------------- //
-
-	material = mountain->GetAppearance()->GetMaterial();
-
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
-
-	// Set world matrix
-	cb.World = XMMatrixTranspose(mountain->GetTransform()->GetWorldMatrix());
-
-	// Set texture
-	if (mountain->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = mountain->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
-
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	// Draw object
-	mountain->Draw(_pImmediateContext);
-
-
-	// -------------- Draw Race Track -------------- //
-
-	material = raceTrack->GetAppearance()->GetMaterial();
-
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
-
-	// Set world matrix
-	cb.World = XMMatrixTranspose(raceTrack->GetTransform()->GetWorldMatrix());
-
-	// Set texture
-	if (raceTrack->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = raceTrack->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
-
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
-
-	// Draw object
-	raceTrack->Draw(_pImmediateContext);
-
-
-
+	
 
 	// ------------- Draw Plane Body ------------- //
 	if (!myPlane->isExploaded())

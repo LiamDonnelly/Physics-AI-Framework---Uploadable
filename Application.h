@@ -87,14 +87,8 @@ private:
 	Plane* myPlane;
 	AIPlane* comPlane;
 
-	// Other Objects
-	GameObject* raceTrack;
-	GameObject* groundPlane;
-	GameObject* mountain;
-	GameObject* house;
-	GameObject* firePit;
-	GameObject* tree;
-	GameObject* ball;
+	
+	
 	//Effects
 	// Cameras
 	Camera* cameraMain;

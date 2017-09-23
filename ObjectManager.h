@@ -30,6 +30,13 @@ public:
 	void InitObjects(ID3D11Device* _pd3dDevice, MaterialManager* _cMaterialManager, TextureManager* _cTextureManager);
 
 	GameObject* skyBox;
+	GameObject* ball;
+	GameObject* house;
+	GameObject* mountain;
+	GameObject* tree;
+	GameObject* raceTrack;
+	GameObject* firePit;
+	GameObject* groundPlane;
 
 	vector<GameObject*> objects;
 };
