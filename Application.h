@@ -29,35 +29,16 @@ using namespace DirectX;
 class Application
 {
 private:
-	bool temp = true;
+	
+	HINSTANCE _hInst;
+	HWND _hWnd;
 	
 	D3D* _cDirectx;
 	Lighting* _cLightingManager;
 	MaterialManager* _cMaterialManager;
 	TextureManager* _cTextureManager;
 	ObjectManager* _cObjectManager;
-
-	HINSTANCE               _hInst;
-	HWND                    _hWnd;
-	
-
-	ID3D11Buffer*           _pPlaneVertexBuffer;
-	ID3D11Buffer*           _pPlaneIndexBuffer;
-
-
-
 	ParticleManager* particleManager;
-
-	ID3D11BlendState* _pTransparent;
-
-	// plane Texture for wheels
-	ID3D11ShaderResourceView* _pplaneTex = nullptr;
-
-	//aircraft textures
-	ID3D11ShaderResourceView* _pAIPlaneTex = nullptr;
-	ID3D11ShaderResourceView* _pPlaneTex = nullptr;
-
-
 
 	// Camera
 	Camera* _camera;
@@ -74,51 +55,14 @@ private:
 	UINT _renderHeight = 1080;
 	UINT _renderWidth = 1920;
 
-	ID3D11DepthStencilState* DSLessEqual;
-	ID3D11RasterizerState* RSCullNone;
-
-	ID3D11RasterizerState* CCWcullMode;
-	ID3D11RasterizerState* CWcullMode;
-
-
-	// Game Objects
-
-	vector<GameObject*> Objects;
-	Plane* myPlane;
-	AIPlane* comPlane;
-
-	
-	
-	//Effects
-	// Cameras
-	Camera* cameraMain;
-	Camera* cameraPlaneMain;
-	Camera* cameraPlaneAlternate;
-	Camera* cameraTopView;
-	Camera* cameraPlanePerspective;
-	Camera* normPerspective;
-
-	XMFLOAT3 cameraPlanePos;
-
-	Camera* cameraCurrent;
-
-	int camNum;
-
-	float eyeX;
-	float eyeY;
-	float eyeZ;
 
 private:
 	HRESULT InitWindow(HINSTANCE hInstance, int nCmdShow);
+
 	void Cleanup();
 	
-
-	// From Semester 1
 	void InitObjects();
-	void InitPlaneObjects();
-	void PlaneUpdate(float t);
 	void CameraInput();
-	void ManageCollisions();
 
 
 public:
