@@ -703,6 +703,8 @@ void Application::Draw()
 	ID3D11Buffer* _pConstantBuffer = _cDirectx->GetCB();
 	_cDirectx->ClearRenderTarget();
 
+
+	
 	// Setup View and Projection
 	XMMATRIX view;
 	XMMATRIX projection;
@@ -735,35 +737,36 @@ void Application::Draw()
 
 	Material material;
 
+	_cObjectManager->Draw(_pImmediateContext, _pConstantBuffer, cb);
 	// --------------- Draw Sky Box ---------------- //
 
-	material = _cObjectManager->skyBox->GetAppearance()->GetMaterial();
+	//material = _cObjectManager->skyBox->GetAppearance()->GetMaterial();
 
-	// Copy material to shader
-	cb.surface.AmbientMtrl = material.ambient;
-	cb.surface.DiffuseMtrl = material.diffuse;
-	cb.surface.SpecularMtrl = material.specular;
+	//// Copy material to shader
+	//cb.surface.AmbientMtrl = material.ambient;
+	//cb.surface.DiffuseMtrl = material.diffuse;
+	//cb.surface.SpecularMtrl = material.specular;
 
-	// Set world matrix
-	cb.World = XMMatrixTranspose(_cObjectManager->skyBox->GetTransform()->GetWorldMatrix());
+	//// Set world matrix
+	//cb.World = XMMatrixTranspose(_cObjectManager->skyBox->GetTransform()->GetWorldMatrix());
 
-	// Set texture
-	if (_cObjectManager->skyBox->GetAppearance()->HasTexture())
-	{
-		ID3D11ShaderResourceView* textureRV = _cObjectManager->skyBox->GetAppearance()->GetTextureRV();
-		_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
-		cb.HasTexture = 1.0f;
-	}
-	else
-	{
-		cb.HasTexture = 0.0f;
-	}
+	//// Set texture
+	//if (_cObjectManager->skyBox->GetAppearance()->HasTexture())
+	//{
+	//	ID3D11ShaderResourceView* textureRV = _cObjectManager->skyBox->GetAppearance()->GetTextureRV();
+	//	_pImmediateContext->PSSetShaderResources(0, 1, &textureRV);
+	//	cb.HasTexture = 1.0f;
+	//}
+	//else
+	//{
+	//	cb.HasTexture = 0.0f;
+	//}
 
-	// Update constant buffer
-	_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
+	//// Update constant buffer
+	//_pImmediateContext->UpdateSubresource(_pConstantBuffer, 0, nullptr, &cb, 0, 0);
 
-	// Draw object
-	_cObjectManager->skyBox->Draw(_pImmediateContext);
+	//// Draw object
+	//_cObjectManager->skyBox->Draw(_pImmediateContext);
 
 	// ------------- Draw Ground Plane ------------- //
 

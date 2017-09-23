@@ -25,10 +25,12 @@ public:
 	~ObjectManager();
 
 	void Update(float t);
-	void Draw(ID3D11DeviceContext* _pI);
+	void Draw(ID3D11DeviceContext* _pI, ID3D11Buffer* _pConstantBuffer, ConstantBuffer cb);
 
 	void InitObjects(ID3D11Device* _pd3dDevice, MaterialManager* _cMaterialManager, TextureManager* _cTextureManager);
 
 	GameObject* skyBox;
+
+	vector<GameObject*> objects;
 };
 
