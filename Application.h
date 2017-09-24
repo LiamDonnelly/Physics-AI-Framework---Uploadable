@@ -8,21 +8,15 @@
 #include "resource.h"
 #include <vector>
 
-#include "Structures.h"
-#include "AIPlane.h"
-#include "Plane.h"
-#include "Camera.h"
-#include "PlaneParticleModel.h"
-#include "DDSTextureLoader.h"
-#include "GameObject.h"
-#include "OBJLoader.h"
-#include "ParticleManager.h"
+#include "D3D.h";
 
+#include "ParticleManager.h"
 #include "Lighting.h";
 #include "ObjectManager.h"
-#include "MaterialManager.h";
-#include "TextureManager.h";
-#include "D3D.h";
+#include "MaterialManager.h"
+#include "TextureManager.h"
+
+#include "Camera.h"
 
 using namespace DirectX;
 
@@ -42,11 +36,6 @@ private:
 
 	// Camera
 	Camera* _camera;
-	float _cameraOrbitRadius = 7.0f;
-	float _cameraOrbitRadiusMin = 2.0f;
-	float _cameraOrbitRadiusMax = 50.0f;
-	float _cameraOrbitAngleXZ = -90.0f;
-	float _cameraSpeed = 5.0f;
 
 	UINT _WindowHeight;
 	UINT _WindowWidth;
@@ -62,7 +51,6 @@ private:
 	void Cleanup();
 	
 	void InitObjects();
-	void CameraInput();
 
 
 public:

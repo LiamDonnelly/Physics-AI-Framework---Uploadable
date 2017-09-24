@@ -27,30 +27,7 @@ bool Application::HandleKeyboard(MSG msg)
 {
 	XMFLOAT3 cameraPosition = _camera->GetPosition();
 
-	switch (msg.wParam)
-	{
-	case VK_UP:
-		_cameraOrbitRadius = max(_cameraOrbitRadiusMin, _cameraOrbitRadius - (_cameraSpeed * 0.2f));
-		return true;
-		break;
-
-	case VK_DOWN:
-		_cameraOrbitRadius = min(_cameraOrbitRadiusMax, _cameraOrbitRadius + (_cameraSpeed * 0.2f));
-		return true;
-		break;
-
-	case VK_RIGHT:
-		_cameraOrbitAngleXZ -= _cameraSpeed;
-		return true;
-		break;
-
-	case VK_LEFT:
-		_cameraOrbitAngleXZ += _cameraSpeed;
-		return true;
-		break;
-	}
-
-	return false;
+	return true;
 }
 
 Application::Application()
@@ -159,49 +136,6 @@ void Application::Cleanup()
 	}
 }
 
-void Application::CameraInput()
-{
-	// If Camera 1 then Check Free Camera input
-	
-	float cameraMoveSpeed = 0.1f;
-
-	// Zoom Out
-	if (GetAsyncKeyState(VK_DOWN))
-	{
-		//eyeX -= cameraMoveSpeed;
-	}
-
-	// Zoom In
-	if (GetAsyncKeyState(VK_UP))
-	{
-		//eyeX += cameraMoveSpeed; // or call camera setX function appropriately
-	}
-
-	// Pan Up
-	if (GetAsyncKeyState(0x54))
-	{
-		//eyeY += cameraMoveSpeed;
-	}
-
-	// Pan Down
-	if (GetAsyncKeyState(0x47))
-	{
-		//eyeY -= cameraMoveSpeed;
-	}
-
-	// Pan Left
-	if (GetAsyncKeyState(0x46))
-	{
-		//eyeZ += cameraMoveSpeed;
-	}
-	// Pan right
-	if (GetAsyncKeyState(0x48))
-	{
-		//eyeZ -= cameraMoveSpeed;
-	}
-
-}
-
 void Application::Update(float t)
 {
 	// Update our time
@@ -216,6 +150,7 @@ void Application::Update(float t)
 	timeSinceStart = (dwTimeCur - dwTimeStart) / 1000.0f;
 
 	_cObjectManager->Update(t);
+	_camera->Input(t);
 
 }
 

@@ -6,7 +6,7 @@
 #include <directxmath.h>
 #include <directxcolors.h>
 #include "resource.h"
-
+#include <dinput.h>
 using namespace DirectX;
 
 class Camera
@@ -16,7 +16,8 @@ public:
 	~Camera();
 
 	// Check Camera Input
-	void Input();
+	void Input(float t);
+	void Update();
 
 	// Calculate the View Projection
 	void CalculateViewProjection();
@@ -58,16 +59,33 @@ private:
 	XMFLOAT3 _at;
 	XMFLOAT3 _up;
 
+	XMFLOAT3 DEFAULTFORWARD;
+	XMFLOAT3 DEFAULTRIGHT;
+	XMFLOAT3 _forward;
+	XMFLOAT3 _right;
+	XMFLOAT3 _position;
+
+	float moveLeftRight = 0.0f;
+	float moveBackForward = 0.0f;
+
 	FLOAT _windowWidth;
 	FLOAT _windowHeight;
+
+	IDirectInput8* _directInput;
+	IDirectInputDevice8* _keyboard;
+	IDirectInputDevice8* _mouse;
+	float _mouseX;
+	float _mouseY;
 
 	FLOAT _nearDepth;
 	FLOAT _farDepth;
 
 	XMFLOAT4X4 _rotate;
+	float _yaw;
+	float _pitch;
 	XMFLOAT4X4 _view;
 	XMFLOAT4X4 _projection;
 
-	XMFLOAT3 _position;
+	
 };
 

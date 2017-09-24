@@ -12,11 +12,11 @@
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{84a4d56f-682d-4b12-a7c9-064cc08bce09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CPP">
-      <UniqueIdentifier>{03f0b66d-b723-4c19-80fe-ae1409b37c5f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Headers">
       <UniqueIdentifier>{099e367b-2a50-4f92-8b43-20717b5f54b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp">
+      <UniqueIdentifier>{03f0b66d-b723-4c19-80fe-ae1409b37c5f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,65 +82,65 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Appearance.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="DDSTextureLoader.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleModel.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="OBJLoader.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="PlaneParticleModel.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="Particle.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="ParticleManager.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
-      <Filter>CPP</Filter>
-    </ClCompile>
-    <ClCompile Include="AIPlane.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="Lighting.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="MaterialManager.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="D3D.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJLoader.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleModel.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Cpp</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
-      <Filter>CPP</Filter>
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Appearance.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="AIPlane.cpp">
+      <Filter>Cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
