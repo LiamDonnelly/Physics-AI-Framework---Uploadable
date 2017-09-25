@@ -6,7 +6,7 @@
 #include <directxmath.h>
 #include <directxcolors.h>
 #include "resource.h"
-#include <dinput.h>
+
 using namespace DirectX;
 
 class Camera
@@ -71,9 +71,6 @@ private:
 	FLOAT _windowWidth;
 	FLOAT _windowHeight;
 
-	IDirectInput8* _directInput;
-	IDirectInputDevice8* _keyboard;
-	IDirectInputDevice8* _mouse;
 	float _mouseX;
 	float _mouseY;
 

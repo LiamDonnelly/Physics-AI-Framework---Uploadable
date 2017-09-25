@@ -80,6 +80,7 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="InputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -142,6 +143,7 @@
     <ClCompile Include="AIPlane.cpp">
       <Filter>Cpp</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

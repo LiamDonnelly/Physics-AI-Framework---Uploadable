@@ -18,7 +18,7 @@ Camera::Camera(XMFLOAT3 eye, XMFLOAT3 at, XMFLOAT3 up, FLOAT windowWidth, FLOAT 
 	
 
 	// Set the data format.  In this case since it is a keyboard we can use the predefined data format.
-	 _keyboard->SetDataFormat(&c_dfDIKeyboard);
+	
 	
 	_mouseX = 0.0f;
 	_mouseY = 0.0f;
@@ -39,45 +39,6 @@ Camera::~Camera()
 void Camera::Input(float t)
 {
 	
-	DIMOUSESTATE mouseCurrState;
-	
-	BYTE keyboardState[256];
-	_keyboard->Acquire();
-	_mouse->Acquire();
-
-	_mouse->GetDeviceState(sizeof(DIMOUSESTATE), &mouseCurrState);
-
-	_keyboard->GetDeviceState(sizeof(keyboardState), (LPVOID)&keyboardState);
-
-
-	float speed = 15.0f * t;
-
-	if (keyboardState[DIK_A] & 0x80)
-	{
-		moveLeftRight -= speed;
-	}
-	if (keyboardState[DIK_D] & 0x80)
-	{
-		moveLeftRight += speed;
-	}
-	if (keyboardState[DIK_W] & 0x80)
-	{
-		moveBackForward += speed;
-	}
-	if (keyboardState[DIK_S] & 0x80)
-	{
-		moveBackForward -= speed;
-	}
-	if ((mouseCurrState.lX != _mouseX) || (mouseCurrState.lY != _mouseY))
-	{
-		_yaw += _mouseX * 0.001f;
-
-		_pitch += mouseCurrState.lY * 0.001f;
-
-		_mouseX = mouseCurrState.lX;
-		_mouseY = mouseCurrState.lY;
-	}
-
 
 	Update();
 }

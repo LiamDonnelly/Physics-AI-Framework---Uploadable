@@ -15,7 +15,7 @@
 #include "ObjectManager.h"
 #include "MaterialManager.h"
 #include "TextureManager.h"
-
+#include "InputManager.h"
 #include "Camera.h"
 
 using namespace DirectX;
@@ -33,7 +33,7 @@ private:
 	TextureManager* _cTextureManager;
 	ObjectManager* _cObjectManager;
 	ParticleManager* particleManager;
-
+	InputManager* _cInputManager;
 	// Camera
 	Camera* _camera;
 

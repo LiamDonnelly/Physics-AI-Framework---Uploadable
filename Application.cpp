@@ -62,6 +62,7 @@ HRESULT Application::Initialise(HINSTANCE hInstance, int nCmdShow)
 	_cMaterialManager = new MaterialManager();
 	_cTextureManager = new TextureManager(_cDirectx->GetDevice());
 	_cObjectManager = new ObjectManager();
+	_cInputManager = new InputManager(hInstance, _hWnd);
 
 	// Setup Camera
 	XMFLOAT3 eye = XMFLOAT3(0.0f, 2.0f, -1.0f);
@@ -151,6 +152,7 @@ void Application::Update(float t)
 
 	_cObjectManager->Update(t);
 	_camera->Input(t);
+	_cInputManager->update();
 
 }
 
